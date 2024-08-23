@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
     public float backwardMovementSpeed = 4f;
     public float strafeMovementSpeed = 3f;
 
+    //Very high look sensitivity may result in undesirable behaviour
     public float verticalLookSensitivity = 1f;
     public float horizontalLookSensitivity = 1f;
 
     [HideInInspector]
     public bool shouldMove = true;
+
     [HideInInspector]
     public bool shouldLook = true;
 
@@ -23,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isLooking = false;
     private Vector3 moveDir = new Vector3(0, 0, 0);
     private Vector3 lookVec = new Vector3(0, 0, 0);
+    //Should always be greater than 0. Reccommended above 10
+    private float verticalLookCapOffset = 10;
 
     private void Start()
     {
@@ -74,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetMove(Vector2 direction)
     {
-       moveDir = direction;
+        moveDir = direction;
     }
 
     private void SetLook(Vector2 direction)
@@ -101,6 +106,17 @@ public class PlayerMovement : MonoBehaviour
         //Rotates around the UP axis (player)
         transform.Rotate(transform.up, lookVec.x, Space.World);
         //Rotates around the RIGHT axis (camera)
-        cameraTransform.Rotate(cameraTransform.right, lookVec.y, Space.Self);
+        if (cameraTransform.eulerAngles.x < 270 + verticalLookCapOffset && cameraTransform.eulerAngles.x > 180)
+        {
+            cameraTransform.Rotate(cameraTransform.right, 0.1f, Space.World);
+        }
+        else if (cameraTransform.eulerAngles.x > 90 - verticalLookCapOffset && cameraTransform.eulerAngles.x < 180)
+        {
+            cameraTransform.Rotate(cameraTransform.right, -0.1f, Space.World);
+        }
+        else
+        {
+            cameraTransform.Rotate(cameraTransform.right, lookVec.y, Space.World);
+        }
     }
 }
