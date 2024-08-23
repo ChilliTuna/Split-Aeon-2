@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isMoving = false;
     private bool isLooking = false;
-    private Vector3 moveVec = new Vector3(0, 0, 0);
+    private Vector3 moveDir = new Vector3(0, 0, 0);
     private Vector3 lookVec = new Vector3(0, 0, 0);
 
     private void Start()
@@ -74,15 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetMove(Vector2 direction)
     {
-        Vector3 moveAmount = direction;
-        if (direction != Vector2.zero)
-        {
-            float moveZ = direction.y > 0 ? direction.y * forwardMovementSpeed : direction.y * backwardMovementSpeed;
-            float moveX = direction.x * strafeMovementSpeed;
-
-            moveAmount = new Vector3(transform.right.x * moveX - transform.right.z * moveZ, 0, transform.forward.z * moveZ - transform.forward.x * moveX);
-        }
-        moveVec = moveAmount;
+       moveDir = direction;
     }
 
     private void SetLook(Vector2 direction)
@@ -93,12 +85,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
+        Vector3 moveVec = Vector3.zero;
+        if (moveDir != Vector3.zero)
+        {
+            float moveZ = moveDir.y > 0 ? moveDir.y * forwardMovementSpeed : moveDir.y * backwardMovementSpeed;
+            float moveX = moveDir.x * strafeMovementSpeed;
+
+            moveVec = new Vector3(transform.right.x * moveX - transform.right.z * moveZ, 0, transform.forward.z * moveZ - transform.forward.x * moveX);
+        }
         playerCharacterController.Move(moveVec * Time.deltaTime);
     }
 
     private void Look()
     {
+        //Rotates around the UP axis (player)
         transform.Rotate(transform.up, lookVec.x, Space.World);
-        cameraTransform.Rotate(cameraTransform.right, lookVec.y, Space.World);
+        //Rotates around the RIGHT axis (camera)
+        cameraTransform.Rotate(cameraTransform.right, lookVec.y, Space.Self);
     }
 }

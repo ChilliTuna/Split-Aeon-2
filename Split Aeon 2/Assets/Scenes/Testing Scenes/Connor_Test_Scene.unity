@@ -710,6 +710,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1863353288674338903, guid: a5d05511c18418b4db46fd5a5015fe42,
+        type: 3}
+      propertyPath: verticalLookSensitivity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863353288674338903, guid: a5d05511c18418b4db46fd5a5015fe42,
+        type: 3}
+      propertyPath: horizontalLookSensitivity
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2227310903510783131, guid: a5d05511c18418b4db46fd5a5015fe42,
         type: 3}
       propertyPath: m_LocalPosition.x
