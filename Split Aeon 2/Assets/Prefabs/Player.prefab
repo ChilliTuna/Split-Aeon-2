@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 7860592619702819646}
   - component: {fileID: 3096703200310327911}
   - component: {fileID: 1863353288674338903}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 5178564091107682959}
   - component: {fileID: 2281482839773621901}
   - component: {fileID: 4146250687091532260}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 8428448542224813826}
   - component: {fileID: 2229891245480819479}
   - component: {fileID: 4356314607034443166}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 6074596136067888919}
   - component: {fileID: 3764617891318746748}
   - component: {fileID: 124185255733038906}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 1377035111780450059}
   - component: {fileID: 7005870359359821784}
   - component: {fileID: 5965880648965925922}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pointer Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
